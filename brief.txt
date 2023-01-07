@@ -1,0 +1,34 @@
+Project Breif:
+    Should have a fancy wizzard maybe?
+    Possibly set machine name and add to AD?
+    Install applications via a single Powershell Script.
+    
+    Applications Filters:
+        Name via Regex
+        WMIC Query
+        AD Group
+        OU Group
+        OS
+
+    Package Deffintions:
+        Name
+        UNC Path
+        Install Check
+            App ID
+            Folder
+            File
+        Install command
+        Uninstall command
+    
+    Commands:
+        CMD
+        MSI
+        PowerShell
+        VBS
+        EXE
+    
+    Main config:
+        Install Location
+        UNC Path
+        
+    

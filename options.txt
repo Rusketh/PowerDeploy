@@ -1,0 +1,57 @@
+Package:
+    Template
+    Name
+    Version
+    Filter
+    Install
+    Uninstall
+    AllowInstall
+    AllowUninstall
+    Validator
+    Dependencies
+    Includes
+
+Filters
+    Name:<Regex>
+    WMIC:<Query>
+    PowerShell:<Expression>
+    Group:<AD Group Name or DN>
+    OU:<AD OU Group as DN>
+    NOT:<Filter>
+    AND:<Filter>&<Filter>
+    OR:<Filter>|<Filter>
+
+Validators:
+    File:<File path>
+    GUID:<Uninstall GUID>
+    PowerShell:<Expression>
+    Package:<Package Name>
+    Version:<File Path or Package Name><<=>><Version>
+    NOT:<Validator>
+    AND:<Validator>&<Validator>
+    OR:<Validator>|<Validator>
+
+Commands:
+    CMD:<CommandLine>
+    BAT:<Batch File Path>
+    PowerShell:<Expression>
+    Script:<PowerShell Script File Path>
+
+Templates:
+    MSI:
+        MSI
+        GUID
+        ProuctName
+        Patches
+        Transforms
+        LogFiles
+        Passive
+        Silent
+        AllUsers
+        Arguments
+    
+    WinGet:
+        ProuctName
+        Location
+        Source
+        Silent

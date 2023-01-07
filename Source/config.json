@@ -1,0 +1,10 @@
+{
+    "Mount":
+    {
+        "Path": "\\\\BA-UNICORN\\A$\\PowerDeploy"
+    },
+    "Install":
+    {
+        "Path": "C:\\PowerDeploy"
+    }
+}

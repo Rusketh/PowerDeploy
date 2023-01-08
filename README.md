@@ -3,7 +3,12 @@ Power Deploy is a tool for installing and uninstalling software on Windows devic
 
 Some key features of Power Deploy include:
 
-Automated software installations and uninstalls A user-friendly    interface for manual installations and uninstalls The ability to    install and uninstall software on multiple devices at once Support for site deployments (e.g. mounting on a UNC path) Using Power Deploy can save time and effort when managing software installations and    uninstalls, and can help ensure that software is consistently deployed across your organization.
+ - Automated software installations and uninstalls.
+ - A user-friendly interface for manual installations and uninstalls.
+ - The ability to install and uninstall multiple software at once.
+ - Support for site deployments (e.g. mounting on a UNC path).
+
+Using Power Deploy can save time and effort when managing software installations and    uninstalls, and can help ensure that software is consistently deployed across your organization.
 
 ### **Using Power Deploy**
 To use PowerDeploy, you simply need to run the powerdeploy.ps1 script. You can specify certain parameters when running the script to customize its behavior. For example, you can specify the -NoUI parameter to run the script without a user interface, or you can specify a different ConfigFile or PackageDir to use custom configurations or package directories. The LogFile parameter can also be specified to specify a custom log file location.
@@ -29,36 +34,37 @@ Power Deploy uses a simple folder structure to package applications for installa
 The package.json file should contain a JSON object with the following properties:
 
     {
-        "Template": "template-name", // Optional. The name of a template to build the package from.
-        "Name": "Example Package", // Required. The name of the package.
-        "Version": "1.0", // Optional. The version of the package.
-        "Filter": {...}, // Optional. A set of filters to determine which machines are targeted.
-        "Install": [...], // Optional. A set of commands to run during installation.
-        "Uninstall": [...], // Optional. A set of commands to run during uninstallation.
-        "AllowInstall": true, // Optional. Allows users to install the package from the user interface.
-        "AllowUninstall": true, // Optional. Allows users to uninstall the package from the user interface.
-        "Validator": [...] // Optional. A set of instructions to check if a program is installed correctly.
+        "Template": "template-name",
+        "Name": "Example Package",
+        "Version": "1.0",
+        "Filter": [...],
+        "Install": [...],
+        "Uninstall": [...],
+        "AllowInstall": true,
+        "AllowUninstall": true,
+        "Validator": [...]
     }
 
-`Template`: The name of a template to build the package from. This is an optional field.
-`Name`: The name of the package. This is a required field.
-`Version`: The version of the package. This is an optional field.
-`Filter`: A set of filters to determine which machines are targeted. This is an optional field.
-`Install`: A set of commands to run during installation. This is an optional field.
-`Uninstall`: A set of commands to run during uninstallation. This is an optional field.
-`AllowInstall`: Allows users to install the package from the user interface. This is an optional field.
-`AllowUninstall`: Allows users to uninstall the package from the user interface. This is an optional field.
-`Validator`: A set of instructions to check if a program is installed correctly. This is an optional field.
+ - `Template`: The name of a template to build the package from. This is an optional field.
+ - `Name`: The name of the package. This is a required field.
+ - `Version`: The version of the package. This is an optional field.
+ - `Filter`: A set of filters to determine which machines are targeted. This is an optional field.
+ - `Install`: A set of commands to run during installation. This is an optional field.
+ - `Uninstall`: A set of commands to run during uninstallation. This is an optional field.
+ - `AllowInstall`: Allows users to install the package from the user interface. This is an optional field.
+ - `AllowUninstall`: Allows users to uninstall the package from the user interface. This is an optional field.
+ - `Validator`: A set of instructions to check if a program is installed correctly. This is an optional field.
 
 Once you have created a package folder with a `package.json` file and your installation files, you can use Power Deploy to install or uninstall the package.
 
 #### **Install & Uninstall Commands**
 To write install and uninstall commands for Power Deploy, you can use a variety of command types  The available command types are:
 
-`CMD`: Executes a command using the cmd.exe command-line interpreter.
-`BAT`: Executes a batch file using the cmd.exe command-line interpreter.
-`PowerShell`: Executes a PowerShell command or script.
-`Script`: Executes a PowerShell script file.
+ - `CMD`: Executes a command using the cmd.exe command-line interpreter.
+ - `BAT`: Executes a batch file using the cmd.exe command-line interpreter.
+ - `PowerShell`: Executes a PowerShell command or script.
+ - `Script`: Executes a PowerShell script file.
+ - 
 To use a command type, prefix the command with the type followed by a colon. For example, to execute a CMD command, you would use `CMD`:command-text, and to execute a PowerShell command, you would use PowerShell:command-text.
 
 Here is an example of how you might use these command types in a package.json file:
@@ -82,11 +88,11 @@ In Power Deploy, validators are used to check if an installed package is install
 
 The available validator types are:
 
-File: Checks if a specified file exists on the system.
-GUID: Checks if a package with a specified GUID is installed on the system.
-PowerShell: Executes a PowerShell command or script and returns the result.
-Package: Checks if a package with a specified name is installed on the system.
-Version: Compares the version of a specified file or package with a target version.
+ - `File`: Checks if a specified file exists on the system.
+ - `GUID`: Checks if a package with a specified GUID is installed on the system.
+ - `PowerShell`: Executes a PowerShell command or script and returns the result.
+ - `Package`: Checks if a package with a specified name is installed on the system.
+ - `Version`: Compares the version of a specified file or package with a target version.
 
 To use a validator type, prefix the validator with the type followed by a colon. For example, to use the File validator, you would use File:path\to\file, and to use the Package validator, you would use Package:package-name.
 
@@ -107,11 +113,11 @@ In Power Deploy, filters are used to determine which machines a package should b
 
 The available filter types are:
 
-`Name`: Filters machines based on their name using a regex pattern.
-`WMIC`: Filters machines using a WMIC query.
+ - `Name`: Filters machines based on their name using a regex pattern.
+ - `WMIC`: Filters machines using a WMIC query.
 PowerShell: Filters machines using a PowerShell command or script.
-`Group`: Filters machines based on their membership in an Active Directory group.
-`OU`: Filters machines based on their membership in an Active Directory organizational unit (OU).
+ - `Group`: Filters machines based on their membership in an Active Directory group.
+ - `OU`: Filters machines based on their membership in an Active Directory organizational unit (OU).
 
 To use a filter type, prefix the filter with the type followed by a colon. For example, to use the Name filter, you would use Name:pattern, and to use the Group filter, you would use Group:group-name.
 
@@ -131,6 +137,7 @@ Templates in Power Deploy allow you to create a predefined set of instructions f
 
 ##### **MSI Installers**
 Power Deploy includes support for installing and uninstalling MSI packages. To use MSI templates, include the "Template" field in your package.json file and set its value to "MSI". The following fields are supported in MSI templates:
+
     {
     	 "Template":  "MSI",
     	 "Name":  "Example Package",
@@ -146,14 +153,14 @@ Power Deploy includes support for installing and uninstalling MSI packages. To u
     	 "Silent": true
     }
     
-`MSI`: Required. The path to the MSI file. This can include environment variables such as `%scriptroot%`, `%mount%`, and `%packageroot%`.
-`ProductName`: Optional. The name of the product being installed. If not provided, Power Deploy will attempt to extract the product name from the MSI file.
-`Version`: Optional. The version of the package. If not provided, Power Deploy will attempt to extract the version from the MSI file.
-`GUID`: Optional. The GUID of the product being installed. If not provided, Power Deploy will attempt to extract the GUID from the MSI file.
-`Transforms`: Optional. Specify an array of transform files to apply during the installation. The files should be located in the package directory.
-`Patches`: Optional. Sspecify patches (also known as hotfixes or update packages) to apply during the installation process. Patches are used to fix issues or add functionality to an installation.
-`Silent`: Optional. Run the installation silently. Silent installations do not show any user interface during the installation process.
-`AllUsers`: Optional. Specifies whether to install for all users or just the current user..
+ - `MSI`: Required. The path to the MSI file. This can include environment variables such as `%scriptroot%`, `%mount%`, and `%packageroot%`.
+ - `ProductName`: Optional. The name of the product being installed. If not provided, Power Deploy will attempt to extract the product name from the MSI file.
+ - `Version`: Optional. The version of the package. If not provided, Power Deploy will attempt to extract the version from the MSI file.
+ - `GUID`: Optional. The GUID of the product being installed. If not provided, Power Deploy will attempt to extract the GUID from the MSI file.
+ - `Transforms`: Optional. Specify an array of transform files to apply during the installation. The files should be located in the package directory.
+ - `Patches`: Optional. Sspecify patches (also known as hotfixes or update packages) to apply during the installation process. Patches are used to fix issues or add functionality to an installation.
+ - `Silent`: Optional. Run the installation silently. Silent installations do not show any user interface during the installation process.
+ - `AllUsers`: Optional. Specifies whether to install for all users or just the current user..
 
 ##### **Winget Packages**
 The Winget template allows you to install and uninstall applications using the Windows Package Manager (Winget). To use the Winget template, you will need to have Winget installed on your machine.
@@ -168,6 +175,7 @@ To use Winget templates, include the "Template" field in your package.json file 
     	"AllowUninstall": true,
     	"Silent": true
     }
-`Name`: The name of the package. This is a required field.
-`Version`: The version of the package. This is an optional field.
-`Silent`: Optional. Specifies whether to install the package silently.
+
+ - `Name`: The name of the package. This is a required field.
+ - `Version`: The version of the package. This is an optional field.
+ - `Silent`: Optional. Specifies whether to install the package silently.

@@ -126,3 +126,48 @@ Here is an example of how you might use filters in a package.json file:
     }
 
 In this example, the Filter field specifies two filters to run: a Name filter that matches machine names starting with`Laptop-` followed by a number, and a Group filter that matches machines that are members of the `Example Group` Active Directory group.
+#### **Templates**
+Templates in Power Deploy allow you to create a predefined set of instructions for packaging and installing applications. This can be useful if you have a large number of applications that follow a similar installation process.
+
+##### **MSI Installers**
+Power Deploy includes support for installing and uninstalling MSI packages. To use MSI templates, include the "Template" field in your package.json file and set its value to "MSI". The following fields are supported in MSI templates:
+    {
+    	 "Template":  "MSI",
+    	 "Name":  "Example Package",
+    	 "Version":  "1.0",
+    	 "Filter":  [...],
+    	 "AllowInstall":  true,
+    	 "AllowUninstall":  true,
+    	 "MSI":  "path/to/package.msi",
+    	 "ProductName":  "Product Name",
+    	 "GUID":  "{GUID}",
+    	 "Transforms":  ["path/to/transform.mst"],
+    	 "Patches":  ["path/to/patch.msp"],
+    	 "Silent": true
+    }
+    
+`MSI`: Required. The path to the MSI file. This can include environment variables such as `%scriptroot%`, `%mount%`, and `%packageroot%`.
+`ProductName`: Optional. The name of the product being installed. If not provided, Power Deploy will attempt to extract the product name from the MSI file.
+`Version`: Optional. The version of the package. If not provided, Power Deploy will attempt to extract the version from the MSI file.
+`GUID`: Optional. The GUID of the product being installed. If not provided, Power Deploy will attempt to extract the GUID from the MSI file.
+`Transforms`: Optional. Specify an array of transform files to apply during the installation. The files should be located in the package directory.
+`Patches`: Optional. Sspecify patches (also known as hotfixes or update packages) to apply during the installation process. Patches are used to fix issues or add functionality to an installation.
+`Silent`: Optional. Run the installation silently. Silent installations do not show any user interface during the installation process.
+`AllUsers`: Optional. Specifies whether to install for all users or just the current user..
+
+##### **Winget Packages**
+The Winget template allows you to install and uninstall applications using the Windows Package Manager (Winget). To use the Winget template, you will need to have Winget installed on your machine.
+
+To use Winget templates, include the "Template" field in your package.json file and set its value to "Winget". The following fields are supported in Winget templates:
+
+    {
+    	"Template": "winget",
+    	"Name": "Example Package",
+    	"Version": "1.0",
+    	"AllowInstall": true,
+    	"AllowUninstall": true,
+    	"Silent": true
+    }
+`Name`: The name of the package. This is a required field.
+`Version`: The version of the package. This is an optional field.
+`Silent`: Optional. Specifies whether to install the package silently.
